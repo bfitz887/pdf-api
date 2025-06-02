@@ -1,28 +1,29 @@
 {
   "name": "pdf-api",
   "version": "1.0.0",
-  "main": "index.js",
-"scripts": {
+  "description": "Professional PDF API with monetization features",
+  "main": "server.js",
+  "scripts": {
     "start": "node server.js",
+    "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-}
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  },
+  "keywords": [
+    "pdf",
+    "api",
+    "express",
+    "monetization"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "body-parser": "^2.2.0",
-    "express": "^5.1.0",
-    "express-rate-limit": "^7.5.0",
-    "html-pdf-node": "^1.0.8",
-    "jsonwebtoken": "^9.0.2",
-    "markdown-pdf": "^11.0.0",
-    "multer": "^2.0.0",
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "pdfkit": "^0.13.0",
+    "multer": "^1.4.5-lts.1",
     "pdf-parse": "^1.1.1",
-    "pdfkit": "^0.17.1",
-    "sharp": "^0.34.2",
-    "sqlite3": "^5.1.7",
-    "uuid": "^11.1.0"
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.0",
+    "express-rate-limit": "^6.7.0"
   }
 }
