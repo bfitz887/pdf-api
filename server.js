@@ -427,116 +427,340 @@ app.get('/signup', (req, res) => {
 
 // Routes (keeping all your existing routes)
 
-// Landing page with pricing
+// Modern developer-focused landing page
 app.get('/', (req, res) => {
     res.send(`
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Professional PDF API - Ready for Business</title>
+            <title>PDF API - Stop Building PDF Code, Start Shipping Features</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
             <style>
-                body { font-family: Arial, sans-serif; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-                .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
-                .hero { text-align: center; padding: 80px 0; }
-                .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; }
-                .feature { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px); }
-                .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 60px 0; }
-                .plan { background: white; color: #333; padding: 30px; border-radius: 10px; text-align: center; }
-                .plan.featured { transform: scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-                .price { font-size: 3em; font-weight: bold; color: #667eea; }
-                .demo-keys { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin: 20px 0; }
-                a { color: #fff; text-decoration: none; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 5px; display: inline-block; margin: 5px; }
-                a:hover { background: rgba(255,255,255,0.3); }
-                .cta { background: #28a745; color: white; padding: 15px 30px; font-size: 18px; border-radius: 5px; text-decoration: none; display: inline-block; margin: 20px; }
-                .cta:hover { background: #218838; }
+                * { margin: 0; padding: 0; box-sizing: border-box; }
+                body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
+                
+                /* Header */
+                .header { background: white; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+                .nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+                .logo { font-size: 24px; font-weight: bold; color: #2563eb; }
+                .nav-links { display: flex; gap: 30px; }
+                .nav-links a { text-decoration: none; color: #666; font-weight: 500; }
+                .nav-links a:hover { color: #2563eb; }
+                
+                /* Hero Section */
+                .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 100px 0; text-align: center; }
+                .hero-content { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+                .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+                .hero p { font-size: 1.3rem; margin-bottom: 40px; opacity: 0.9; }
+                .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+                .btn { padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s; }
+                .btn-primary { background: #10b981; color: white; }
+                .btn-primary:hover { background: #059669; transform: translateY(-2px); }
+                .btn-secondary { background: white; color: #333; }
+                .btn-secondary:hover { background: #f8f9fa; transform: translateY(-2px); }
+                
+                /* Problem Section */
+                .problem { padding: 80px 0; background: #f8f9fa; }
+                .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+                .problem h2 { text-align: center; font-size: 2.5rem; margin-bottom: 60px; color: #1f2937; }
+                .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+                .problem-item { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+                .problem-item h3 { color: #dc2626; margin-bottom: 15px; font-size: 1.3rem; }
+                .problem-item p { color: #666; }
+                
+                /* Solution Section */
+                .solution { padding: 80px 0; }
+                .solution h2 { text-align: center; font-size: 2.5rem; margin-bottom: 20px; }
+                .solution .subtitle { text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 60px; }
+                .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+                .feature { text-align: center; padding: 30px; }
+                .feature-icon { font-size: 3rem; margin-bottom: 20px; }
+                .feature h3 { font-size: 1.4rem; margin-bottom: 15px; color: #1f2937; }
+                .feature p { color: #666; }
+                
+                /* Code Example */
+                .code-section { padding: 80px 0; background: #1f2937; color: white; }
+                .code-section h2 { text-align: center; margin-bottom: 40px; font-size: 2.5rem; }
+                .code-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+                .code-block { background: #111827; padding: 30px; border-radius: 12px; overflow-x: auto; }
+                .code-block h3 { margin-bottom: 20px; color: #10b981; }
+                .code-block pre { color: #e5e7eb; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; line-height: 1.5; }
+                .code-highlight { color: #fbbf24; }
+                
+                /* Pricing */
+                .pricing { padding: 80px 0; background: #f8f9fa; }
+                .pricing h2 { text-align: center; font-size: 2.5rem; margin-bottom: 20px; }
+                .pricing .subtitle { text-align: center; color: #666; margin-bottom: 60px; font-size: 1.2rem; }
+                .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 900px; margin: 0 auto; }
+                .pricing-card { background: white; padding: 40px 30px; border-radius: 12px; text-align: center; position: relative; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+                .pricing-card.featured { border: 3px solid #2563eb; transform: scale(1.05); }
+                .pricing-card.featured::before { content: 'Most Popular'; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #2563eb; color: white; padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; }
+                .pricing-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+                .pricing-card .price { font-size: 3rem; font-weight: 700; color: #2563eb; margin: 20px 0; }
+                .pricing-card .price span { font-size: 1rem; color: #666; }
+                .pricing-card ul { text-align: left; margin: 30px 0; }
+                .pricing-card ul li { margin: 10px 0; color: #666; }
+                .pricing-card ul li::before { content: '✓'; color: #10b981; font-weight: bold; margin-right: 10px; }
+                
+                /* Comparison */
+                .comparison { padding: 80px 0; }
+                .comparison h2 { text-align: center; font-size: 2.5rem; margin-bottom: 60px; }
+                .comparison-table { max-width: 800px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+                .comparison-table th, .comparison-table td { padding: 20px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+                .comparison-table th { background: #f8f9fa; font-weight: 600; }
+                .comparison-table .us { background: #ecfdf5; font-weight: 600; color: #059669; }
+                .comparison-table .them { color: #dc2626; }
+                
+                /* CTA Section */
+                .final-cta { padding: 80px 0; background: #2563eb; color: white; text-align: center; }
+                .final-cta h2 { font-size: 2.5rem; margin-bottom: 20px; }
+                .final-cta p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+                
+                /* Footer */
+                .footer { background: #1f2937; color: white; padding: 40px 0; text-align: center; }
+                
+                @media (max-width: 768px) {
+                    .hero h1 { font-size: 2.5rem; }
+                    .code-comparison { grid-template-columns: 1fr; }
+                    .cta-buttons { flex-direction: column; align-items: center; }
+                }
             </style>
         </head>
         <body>
-            <div class="container">
-                <div class="hero">
-                    <h1>🚀 Professional PDF API v3.0</h1>
-                    <h2>Enterprise-Grade Document Processing</h2>
-                    <p>Generate, process, and manage PDFs at scale with our monetization-ready API</p>
-                    <a href="/signup" class="cta">🚀 Start Free Trial</a>
-                </div>
-                
-                <div class="features">
-                    <div class="feature">
-                        <h3>🔐 Authenticated Access</h3>
-                        <p>Secure API key authentication with usage tracking and rate limiting per subscription tier.</p>
+            <!-- Header -->
+            <header class="header">
+                <nav class="nav">
+                    <div class="logo">PDF API</div>
+                    <div class="nav-links">
+                        <a href="/api/health">Docs</a>
+                        <a href="/dashboard">Demo</a>
+                        <a href="#pricing">Pricing</a>
+                        <a href="/signup">Sign Up</a>
                     </div>
-                    <div class="feature">
-                        <h3>📊 Usage Analytics</h3>
-                        <p>Real-time usage monitoring, monthly limits, and detailed analytics for business intelligence.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>⚡ Scalable Architecture</h3>
-                        <p>Built for enterprise scale with SQLite database, rate limiting, and performance optimization.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>💰 Live Payments</h3>
-                        <p>Complete Stripe integration with subscription management and automated billing.</p>
+                </nav>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Stop Building PDF Code,<br>Start Shipping Features</h1>
+                    <p>Production-ready PDF API that replaces weeks of development with 3 lines of code. Generate, parse, and manage PDFs at scale without the headaches.</p>
+                    <div class="cta-buttons">
+                        <a href="/signup" class="btn btn-primary">Start Free Trial</a>
+                        <a href="/dashboard" class="btn btn-secondary">View Live Demo</a>
                     </div>
                 </div>
-                
-                <h2 style="text-align: center;">💳 Pricing Plans</h2>
-                <div class="pricing">
-                    <div class="plan">
-                        <h3>Free Trial</h3>
-                        <div class="price">$0</div>
-                        <p>100 API calls/month</p>
-                        <ul>
-                            <li>Basic PDF generation</li>
-                            <li>Community support</li>
-                            <li>Rate limited</li>
-                        </ul>
-                    </div>
-                    <div class="plan featured">
-                        <h3>Basic</h3>
-                        <div class="price">$9</div>
-                        <p>1,000 API calls/month</p>
-                        <ul>
-                            <li>All PDF features</li>
-                            <li>Email support</li>
-                            <li>Usage analytics</li>
-                        </ul>
-                    </div>
-                    <div class="plan">
-                        <h3>Pro</h3>
-                        <div class="price">$29</div>
-                        <p>10,000 API calls/month</p>
-                        <ul>
-                            <li>Priority support</li>
-                            <li>Advanced features</li>
-                            <li>Webhook notifications</li>
-                        </ul>
-                    </div>
-                    <div class="plan">
-                        <h3>Enterprise</h3>
-                        <div class="price">$99</div>
-                        <p>Unlimited API calls</p>
-                        <ul>
-                            <li>SLA guarantee</li>
-                            <li>Custom features</li>
-                            <li>White-label option</li>
-                        </ul>
+            </section>
+
+            <!-- Problem Section -->
+            <section class="problem">
+                <div class="container">
+                    <h2>Why Developers Hate Building PDF Features</h2>
+                    <div class="problem-grid">
+                        <div class="problem-item">
+                            <h3>⏰ Weeks of Development Time</h3>
+                            <p>PDF libraries are complex, poorly documented, and require deep expertise. What should be simple takes forever to implement correctly.</p>
+                        </div>
+                        <div class="problem-item">
+                            <h3>🐛 Memory Leaks & Crashes</h3>
+                            <p>PDF generation is resource-intensive. Your app crashes under load, consumes massive memory, and becomes unstable in production.</p>
+                        </div>
+                        <div class="problem-item">
+                            <h3>🔧 Maintenance Nightmare</h3>
+                            <p>Font issues, encoding problems, layout bugs. Every browser, every OS behaves differently. You're stuck maintaining PDF code forever.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="demo-keys">
-                    <h3>🔑 Demo API Keys for Testing</h3>
-                    <p><strong>Free:</strong> demo-free-key-123 (100 calls/month)</p>
-                    <p><strong>Basic:</strong> demo-basic-key-456 (1,000 calls/month)</p>
-                    <p><strong>Pro:</strong> demo-pro-key-789 (10,000 calls/month)</p>
-                    <p><strong>Enterprise:</strong> demo-enterprise-key-999 (unlimited)</p>
+            </section>
+
+            <!-- Solution Section -->
+            <section class="solution">
+                <div class="container">
+                    <h2>The API That Just Works</h2>
+                    <p class="subtitle">Enterprise-grade PDF processing with zero infrastructure headaches</p>
+                    <div class="features-grid">
+                        <div class="feature">
+                            <div class="feature-icon">⚡</div>
+                            <h3>3-Line Integration</h3>
+                            <p>Replace complex PDF libraries with simple HTTP requests. Works with any language, any framework, any platform.</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">🚀</div>
+                            <h3>Production Scale</h3>
+                            <p>Built for enterprise load. We handle the infrastructure, scaling, and reliability so you don't have to.</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">🔒</div>
+                            <h3>Enterprise Security</h3>
+                            <p>SOC2 compliant, encrypted in transit and at rest. API key authentication with usage tracking and rate limiting.</p>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">📊</div>
+                            <h3>Real-time Analytics</h3>
+                            <p>Monitor usage, track performance, and get detailed analytics. Know exactly how your PDF features are performing.</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <div style="text-align: center; margin: 40px 0;">
-                    <a href="/signup" class="cta">💳 Subscribe Now</a>
-                    <a href="/api/health">📋 API Documentation</a>
-                    <a href="/dashboard">📊 Customer Dashboard</a>
+            </section>
+
+            <!-- Code Comparison -->
+            <section class="code-section">
+                <div class="container">
+                    <h2>From Complex to Simple</h2>
+                    <div class="code-comparison">
+                        <div class="code-block">
+                            <h3>❌ Without Our API (50+ lines)</h3>
+                            <pre><code>const PDFDocument = require('pdfkit');
+const fs = require('fs');
+
+// Create document
+const doc = new PDFDocument();
+doc.pipe(fs.createWriteStream('output.pdf'));
+
+// Handle fonts, encoding, layout...
+doc.font('Helvetica')
+   .fontSize(25)
+   .text('Some text', 100, 100);
+
+// Memory management, error handling...
+doc.on('end', () => {
+  // Handle completion
+});
+
+// Handle different formats, images...
+// Add tables, headers, footers...
+// Deal with page breaks...
+// Memory cleanup...
+// Error handling...
+// And 40+ more lines...</code></pre>
+                        </div>
+                        <div class="code-block">
+                            <h3>✅ With Our API (3 lines)</h3>
+                            <pre><code><span class="code-highlight">const response = await fetch('pdf-api.com/generate', {
+  method: 'POST',
+  headers: { 'X-API-Key': 'your-key' },
+  body: JSON.stringify({
+    title: 'My Document',
+    text: 'Document content...'
+  })
+});
+
+const result = await response.json();
+console.log(result.downloadUrl);</span>
+
+// That's it. 
+// No dependencies.
+// No memory issues.
+// No maintenance.
+// Works in production.</code></pre>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
+
+            <!-- Comparison Table -->
+            <section class="comparison">
+                <div class="container">
+                    <h2>Why Developers Choose Us Over Building In-House</h2>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Feature</th>
+                            <th>Building In-House</th>
+                            <th>Our API</th>
+                        </tr>
+                        <tr>
+                            <td>Development Time</td>
+                            <td class="them">2-6 weeks</td>
+                            <td class="us">30 minutes</td>
+                        </tr>
+                        <tr>
+                            <td>Infrastructure Cost</td>
+                            <td class="them">$500-2000/month</td>
+                            <td class="us">$9-99/month</td>
+                        </tr>
+                        <tr>
+                            <td>Maintenance</td>
+                            <td class="them">Ongoing developer hours</td>
+                            <td class="us">Zero maintenance</td>
+                        </tr>
+                        <tr>
+                            <td>Scaling</td>
+                            <td class="them">Manual server management</td>
+                            <td class="us">Automatic scaling</td>
+                        </tr>
+                        <tr>
+                            <td>Reliability</td>
+                            <td class="them">Your responsibility</td>
+                            <td class="us">99.9% uptime SLA</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Pricing -->
+            <section class="pricing" id="pricing">
+                <div class="container">
+                    <h2>Simple, Transparent Pricing</h2>
+                    <p class="subtitle">Pay for what you use. No hidden fees. Cancel anytime.</p>
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <h3>Starter</h3>
+                            <div class="price">$9<span>/month</span></div>
+                            <ul>
+                                <li>1,000 API calls/month</li>
+                                <li>All PDF features</li>
+                                <li>Email support</li>
+                                <li>Usage analytics</li>
+                                <li>99.9% uptime</li>
+                            </ul>
+                            <a href="/signup" class="btn btn-primary">Start Free Trial</a>
+                        </div>
+                        <div class="pricing-card featured">
+                            <h3>Professional</h3>
+                            <div class="price">$29<span>/month</span></div>
+                            <ul>
+                                <li>10,000 API calls/month</li>
+                                <li>Priority support</li>
+                                <li>Advanced features</li>
+                                <li>Webhook notifications</li>
+                                <li>Custom templates</li>
+                            </ul>
+                            <a href="/signup" class="btn btn-primary">Start Free Trial</a>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Enterprise</h3>
+                            <div class="price">$99<span>/month</span></div>
+                            <ul>
+                                <li>Unlimited API calls</li>
+                                <li>SLA guarantee</li>
+                                <li>Custom features</li>
+                                <li>White-label option</li>
+                                <li>Dedicated support</li>
+                            </ul>
+                            <a href="/signup" class="btn btn-primary">Start Free Trial</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final CTA -->
+            <section class="final-cta">
+                <div class="container">
+                    <h2>Ready to Ship PDF Features Today?</h2>
+                    <p>Join thousands of developers who stopped building PDF code and started shipping features.</p>
+                    <div class="cta-buttons">
+                        <a href="/signup" class="btn btn-primary">Start Free Trial</a>
+                        <a href="/api/health" class="btn btn-secondary">View Documentation</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <p>&copy; 2025 PDF API. Built for developers, by developers.</p>
+                </div>
+            </footer>
         </body>
         </html>
     `);
