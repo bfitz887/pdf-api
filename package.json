@@ -1,7 +1,7 @@
 {
   "name": "pdf-api",
   "version": "1.0.0",
-  "description": "Professional PDF API with monetization features",
+  "description": "Professional PDF API with monetization features and Stripe payments",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -12,7 +12,9 @@
     "pdf",
     "api",
     "express",
-    "monetization"
+    "stripe",
+    "monetization",
+    "saas"
   ],
   "author": "Your Name",
   "license": "MIT",
@@ -24,6 +26,7 @@
     "pdf-parse": "^1.1.1",
     "sqlite3": "^5.1.6",
     "uuid": "^9.0.0",
-    "express-rate-limit": "^6.7.0"
+    "express-rate-limit": "^6.7.0",
+    "stripe": "^14.0.0"
   }
 }
